@@ -204,6 +204,50 @@
     .dark-band{min-height:72vh}
   }
 </style>
+
+<!-- ===== Medicao Google Ads (Raul, 16/08/2026) =====
+     O consentimento comeca NEGADO. So vira permitido se o
+     visitante clicar em Aceitar no aviso de cookie do rodape.
+     Mesma configuracao da pagina /campanhatelaebateria/. -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  wait_for_update: 500
+});
+try {
+  if (localStorage.getItem('so-cookies') === 'aceito') {
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted'
+    });
+  }
+} catch (e) {}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18356498936"></script>
+<script>
+gtag('js', new Date());
+gtag('config', 'AW-18356498936');
+</script>
+
+<style>
+/* aviso de cookie, no mesmo padrao visual do site */
+.aviso-cookies{position:fixed;z-index:9000;left:16px;right:16px;bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:var(--bg,#fff);color:var(--ink,#1d1d1f);border:1px solid var(--line,#d2d2d7);border-radius:16px;padding:15px 18px;box-shadow:0 18px 44px -18px rgba(0,0,0,.35)}
+.aviso-cookies[hidden]{display:none}
+.aviso-cookies p{flex:1 1 220px;margin:0;color:var(--gray,#6e6e73);font-size:.83rem;line-height:1.45}
+.aviso-cookies-botoes{flex:0 0 auto;display:flex;gap:8px}
+.aviso-cookies button{border:0;cursor:pointer;border-radius:999px;padding:9px 18px;font-family:inherit;font-size:.79rem;font-weight:700}
+.cookie-aceitar{background:var(--lime,#b4d335);color:#14200a}
+.cookie-recusar{background:#f0f0f2;color:var(--ink,#1d1d1f)}
+@media (min-width:901px){.aviso-cookies{left:24px;right:auto;bottom:24px;max-width:470px}}
+</style>
+<!-- ===== fim da medicao ===== -->
 </head>
 <body>
 
@@ -370,6 +414,39 @@
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
   document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+
+<!-- ===== Aviso de cookie (Raul, 16/08/2026) ===== -->
+<div class="aviso-cookies" id="avisoCookies" hidden>
+  <p>Usamos cookies para medir o desempenho dos nossos anúncios. Você escolhe.</p>
+  <div class="aviso-cookies-botoes">
+    <button type="button" class="cookie-recusar" id="cookieRecusar">Recusar</button>
+    <button type="button" class="cookie-aceitar" id="cookieAceitar">Aceitar</button>
+  </div>
+</div>
+<script>
+(function(){
+  var aviso = document.getElementById('avisoCookies');
+  var escolhaAnterior = null;
+  try { escolhaAnterior = localStorage.getItem('so-cookies'); } catch (e) {}
+  if (!escolhaAnterior) { aviso.hidden = false; }
+
+  function responder(escolha) {
+    try { localStorage.setItem('so-cookies', escolha); } catch (e) {}
+    if (escolha === 'aceito' && typeof gtag === 'function') {
+      gtag('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        analytics_storage: 'granted'
+      });
+    }
+    aviso.hidden = true;
+  }
+
+  document.getElementById('cookieAceitar').addEventListener('click', function(){ responder('aceito'); });
+  document.getElementById('cookieRecusar').addEventListener('click', function(){ responder('recusado'); });
+})();
 </script>
 </body>
 </html>
