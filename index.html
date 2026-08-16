@@ -448,5 +448,29 @@ gtag('config', 'AW-18356498936');
   document.getElementById('cookieRecusar').addEventListener('click', function(){ responder('recusado'); });
 })();
 </script>
+
+<!-- ===== Conversao Google Ads (Raul, 16/08/2026) =====
+     Todo clique num botao de WhatsApp avisa o Google Ads que
+     a pessoa pediu orcamento. Dispara uma vez por visita, para
+     nao inflar o numero se a pessoa clicar em varios botoes.
+     Respeita o aviso de cookie: se o visitante recusou, o Google
+     recebe o sinal sem gravar cookie. -->
+<script>
+(function(){
+  var jaAvisou = false;
+  document.addEventListener('click', function(evento){
+    if (jaAvisou) return;
+    var alvo = evento.target;
+    if (!alvo || typeof alvo.closest !== 'function') return;
+    var botao = alvo.closest('a[href*="wa.me"]');
+    if (!botao) return;
+    jaAvisou = true;
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', { send_to: 'AW-18356498936/MKDCCM34qOIcEPjjh7FE' });
+    }
+  }, true);
+})();
+</script>
+<!-- ===== fim da conversao ===== -->
 </body>
 </html>
