@@ -115,10 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 6. Rastreamento de Conversão do Google Ads no Clique de WhatsApp
-  // DESLIGADO em 17/08/2026: a conta antiga (AW-18356498936) foi removida da pagina.
-  // Para religar na conta nova, o Raul precisa mandar o rotulo de conversao dela
-  // (formato AW-18356465900/XXXXXXXX, em Metas > Conversoes). Ai e so descomentar
-  // o bloco abaixo e trocar o send_to pelo novo rotulo.
+  // Ação "Clique no WhatsApp" da conta AW-18356465900 (religada em 18/08/2026).
+  // Um único vigia cobre TODOS os links de WhatsApp da página (~15 botões), dispara a
+  // conversão uma vez por visita e deixa o link abrir normalmente (nova aba preservada).
   let conversaoDisparada = false;
   document.addEventListener('click', (evento) => {
     if (conversaoDisparada) return;
@@ -131,10 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     conversaoDisparada = true;
 
-    // if (typeof gtag === 'function') {
-    //   gtag('event', 'conversion', {
-    //     send_to: 'AW-18356465900/XXXXXXXX'  // <- rotulo da conta nova, pendente
-    //   });
-    // }
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {
+        send_to: 'AW-18356465900/B9OTCKCF-OMcEOzhhbFE',
+        value: 1.0,
+        currency: 'BRL'
+      });
+    }
   }, true);
 });
