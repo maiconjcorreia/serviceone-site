@@ -1881,3 +1881,127 @@ h1, h2, h3, h4 {
     padding: 24px 18px;
   }
 }
+
+/* ==========================================================================
+   AJUSTE DE CELULAR, 21/08/2026
+   Bloco acrescentado no fim do arquivo. Nada acima foi alterado.
+
+   O que estava acontecendo, medido em tela de 360px (345px uteis):
+   o botao "Fazer como nossos clientes: Orcar no WhatsApp" media 440px e,
+   sozinho, esticava a pagina inteira para 464px. Isso criava 119px de
+   rolagem lateral. Com a pagina deslocada, as barras fixas do topo e do
+   rodape PARECIAM cortadas, mesmo cabendo na tela. Corrigido o botao,
+   as duas barras voltam ao lugar.
+   ========================================================================== */
+
+/* 1. Trava a rolagem lateral na raiz.
+      O body ja tinha overflow-x hidden, mas sozinho ele nao segura:
+      o html precisa da mesma trava. */
+html {
+  overflow-x: hidden;
+}
+
+@media (max-width: 860px) {
+
+  /* 2. Botao nunca mais estoura a tela.
+        O .btn nasce com white-space: nowrap, ou seja, proibido de quebrar
+        linha. No celular isso vira transbordo. Aqui ele passa a quebrar e
+        fica limitado a largura disponivel. */
+  .btn {
+    max-width: 100%;
+    white-space: normal;
+    line-height: 1.3;
+  }
+
+  .btn-ic-wpp {
+    flex: none;
+  }
+
+  /* Os dois botoes curtos continuam em uma linha so, ficam melhores assim
+     e ja cabem folgados (154px e 181px numa tela de 345px). */
+  .btn-nav,
+  .btn-mobile-cta {
+    white-space: nowrap;
+  }
+
+  /* O botao central ocupa a largura toda, como os do hero ja faziam. */
+  .center-cta .btn {
+    width: 100%;
+  }
+
+  /* 3. Selo Forward sai da barra no celular.
+        Ele espremia o logo Service One contra o botao verde. No computador
+        continua aparecendo normalmente. Para trazer de volta no celular,
+        basta apagar este bloco. */
+  .fwd-badge {
+    display: none;
+  }
+}
+
+/* 4. Cards de diferenciais em uma coluna.
+      Estavam em duas colunas de 172px, o que quebrava o texto quase palavra
+      por palavra ("Equipe / altamente / capacitada"). O CSS original so
+      previa 4 colunas e 2 colunas, nunca chegava em 1. */
+@media (max-width: 560px) {
+  .diff-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* 5. Barra fixa do rodape, encaixada.
+      Com o botao "Orcar no WhatsApp" aparecendo inteiro, sobrou pouca largura
+      para o texto da esquerda: ele quebrava em 2 linhas (390px) e em 3 linhas
+      (320px), esticando a barra de 74px para 106px e ate 146px. Como o body
+      so reserva 74px no rodape, a barra passava por cima do conteudo.
+      Aqui a barra volta a caber, sem cortar texto e sem esconder nada. */
+@media (max-width: 480px) {
+  .mobile-sticky-bar {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .mobile-bar-info {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .mobile-bar-info strong {
+    font-size: 0.8rem;
+    line-height: 1.25;
+  }
+
+  .mobile-bar-info small {
+    font-size: 0.68rem;
+    line-height: 1.25;
+  }
+
+  .btn-mobile-cta {
+    flex: 0 0 auto;
+    padding: 10px 15px;
+    font-size: 0.82rem;
+    gap: 7px;
+  }
+
+  .btn-mobile-cta .btn-ic-wpp {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+/* Telas bem estreitas (Galaxy antigo, iPhone SE): o texto de apoio sai e o
+   botao aperta mais, para o titulo caber em duas linhas no maximo. */
+@media (max-width: 370px) {
+  .mobile-bar-info small {
+    display: none;
+  }
+
+  .mobile-bar-info strong {
+    font-size: 0.76rem;
+  }
+
+  .btn-mobile-cta {
+    padding: 9px 12px;
+    font-size: 0.76rem;
+  }
+}
