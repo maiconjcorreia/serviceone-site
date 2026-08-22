@@ -2005,3 +2005,62 @@ html {
     font-size: 0.76rem;
   }
 }
+
+/* 6. Selo Forward no celular, 21/08/2026.
+      Medido: com a Forward na barra de topo, o logo da Service One caia para
+      47px numa tela de 320px (menor que o proprio botao verde). Era isso que
+      ficava ruim, nao a Forward em si. Como o botao "Pedir Orcamento" nao
+      encolhe, todo o aperto sobrava para a marca.
+
+      Solucao: no celular a Forward sai da barra e vira um selo proprio ao lado
+      do selo do Google, no comeco da pagina. Ganha destaque em vez de perder,
+      e a barra de topo fica com logo inteiro + botao inteiro.
+      No computador nada muda: continua na barra de cima. */
+
+.fwd-selo-mobile {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  margin: -18px 0 30px;
+  width: fit-content;
+}
+
+.fwd-selo-texto {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gray);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.fwd-selo-img {
+  height: 20px;
+  width: auto;
+  border-radius: 4px;
+  flex: none;
+}
+
+@media (max-width: 860px) {
+  .fwd-selo-mobile {
+    display: inline-flex;
+  }
+}
+
+/* Tela bem estreita: so o logo da Forward, sem o texto, para nao quebrar linha */
+@media (max-width: 340px) {
+  .fwd-selo-texto {
+    font-size: 0.66rem;
+  }
+
+  .fwd-selo-mobile {
+    padding: 7px 13px;
+    gap: 8px;
+  }
+}
