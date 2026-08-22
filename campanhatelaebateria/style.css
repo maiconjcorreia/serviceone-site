@@ -2067,3 +2067,26 @@ html {
     height: 20px;
   }
 }
+
+/* 7. Botao redondo do WhatsApp: sai do celular, 21/08/2026.
+      No celular a pagina tinha DOIS botoes de WhatsApp fixos ao mesmo tempo:
+      a barra de baixo ("Orcar no WhatsApp") e o circulo verde flutuante.
+      Os dois levam para o mesmo lugar, entao um deles e' so' estorvo.
+
+      E era estorvo de verdade: varrendo a pagina inteira, o circulo passava
+      por cima de pelo menos tres botoes de acao ("Pedir Orcamento no
+      WhatsApp", "Ver Marcas Atendidas" e "Orcar meu iPhone no WhatsApp"),
+      cobrindo a borda direita deles. Quem tocasse ali clicava no circulo
+      achando que clicava no botao da pagina.
+
+      Fica a barra de baixo, que e' a melhor das duas: tem texto, explica o
+      que faz e ocupa a largura toda. O circulo sai.
+
+      Medido: a barra de baixo aparece ate 860px, nao ate 480px como parecia.
+      Entao o circulo sai em toda essa faixa. Acima de 860px, no computador,
+      ele continua normalmente, porque la a barra nao existe. */
+@media (max-width: 860px) {
+  .whatsapp-float-btn {
+    display: none;
+  }
+}
