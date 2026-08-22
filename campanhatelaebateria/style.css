@@ -2006,61 +2006,64 @@ html {
   }
 }
 
-/* 6. Selo Forward no celular, 21/08/2026.
-      Medido: com a Forward na barra de topo, o logo da Service One caia para
-      47px numa tela de 320px (menor que o proprio botao verde). Era isso que
-      ficava ruim, nao a Forward em si. Como o botao "Pedir Orcamento" nao
-      encolhe, todo o aperto sobrava para a marca.
 
-      Solucao: no celular a Forward sai da barra e vira um selo proprio ao lado
-      do selo do Google, no comeco da pagina. Ganha destaque em vez de perder,
-      e a barra de topo fica com logo inteiro + botao inteiro.
-      No computador nada muda: continua na barra de cima. */
+/* 6. Forward de volta na barra de topo do celular, 21/08/2026.
+      Medido o motivo de ela ficar ruim ali antes: lado a lado com o logo, numa
+      tela de 320px o logo da Service One caia para 47px, menor que o proprio
+      botao verde. O botao "Pedir Orcamento" nao encolhe, entao o aperto todo
+      sobrava para a marca.
 
-.fwd-selo-mobile {
-  display: none;
-  align-items: center;
-  gap: 10px;
-  background: #ffffff;
-  border: 1px solid var(--line);
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-sm);
-  margin: -18px 0 30px;
-  width: fit-content;
-}
-
-.fwd-selo-texto {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--gray);
-  line-height: 1.1;
-  white-space: nowrap;
-}
-
-.fwd-selo-img {
-  height: 20px;
-  width: auto;
-  border-radius: 4px;
-  flex: none;
-}
-
+      A saida foi empilhar: logo da Service One em cima, "Parceiro oficial" com
+      a Forward embaixo, e o botao inteiro ao lado. Cabe, fica legivel e mantem
+      a mesma ordem de leitura do computador (marca, parceria, acao).
+      No computador nada muda: continua tudo em uma linha. */
 @media (max-width: 860px) {
-  .fwd-selo-mobile {
-    display: inline-flex;
+  .brand-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  .fwd-badge {
+    display: flex;
+    padding-left: 0;
+    border-left: none;
+    gap: 6px;
+  }
+
+  .fwd-text {
+    display: block;
+    font-size: 0.5rem;
+    text-align: left;
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+
+  .fwd-img {
+    height: 15px;
+  }
+
+  .main-logo {
+    height: 22px;
+  }
+
+  .btn-nav {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    flex: none;
   }
 }
 
-/* Tela bem estreita: so o logo da Forward, sem o texto, para nao quebrar linha */
+/* Telas bem estreitas: aperta o botao um pouco mais para o conjunto da
+   marca nunca ser espremido. */
 @media (max-width: 340px) {
-  .fwd-selo-texto {
-    font-size: 0.66rem;
+  .btn-nav {
+    padding: 9px 12px;
+    font-size: 0.75rem;
   }
 
-  .fwd-selo-mobile {
-    padding: 7px 13px;
-    gap: 8px;
+  .main-logo {
+    height: 20px;
   }
 }
