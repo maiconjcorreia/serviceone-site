@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 6. Rastreamento de Conversão do Google Ads no Clique de WhatsApp
-  // Ação "Clique no WhatsApp" da conta AW-18356465900 (religada em 18/08/2026).
+  // Ação "Clique no WhatsApp" da conta AW-18356498936 (religada em 18/08/2026).
   // Um único vigia cobre TODOS os links de WhatsApp da página (~15 botões), dispara a
   // conversão uma vez por visita e deixa o link abrir normalmente (nova aba preservada).
   let conversaoDisparada = false;
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (typeof gtag === 'function') {
       gtag('event', 'conversion', {
-        send_to: 'AW-18356465900/B9OTCKCF-OMcEOzhhbFE',
+        send_to: 'AW-18356498936/MKDCCM34qOIcEPjjh7FE',
         value: 1.0,
         currency: 'BRL'
       });
